@@ -39,7 +39,24 @@ namespace System_Uli
         #endregion
 
         #region METHODS
+        public bool DoThisJob(string job, int numberOfShifts)
+        {
 
+            if (!String.IsNullOrEmpty(currentJob)) // guard
+                return false;
+            for (int i = 0; i < jobsICanDo.Length; i++)
+                if(jobsICanDo[i] == job)
+                {
+                    currentJob = job;
+                    this.shiftsToWork = numberOfShifts;
+                    shiftsWorked = 0;
+                    return true;
+                }
+
+
+            return false;
+        }
+       
 
 
 
