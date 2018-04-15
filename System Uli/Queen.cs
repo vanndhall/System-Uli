@@ -8,7 +8,7 @@ namespace System_Uli
 {
     class Queen
     {
-        #region Konstruktor
+        #region BUILDER
 
         public Queen(Worker[] workers)
         {
@@ -17,12 +17,12 @@ namespace System_Uli
 
         #endregion
 
-        #region Pola
+        #region VERIABLES
         private Worker[] workers;
         private int shiftNumber = 0;  //numer zmiany
         #endregion
 
-        #region Metody
+        #region METHODS
 
             //przypisz pracę(praca , numer zmiany)
         public bool AssignWork(string job, int numberOfShifts) 
@@ -37,6 +37,28 @@ namespace System_Uli
 
         //pracować na następnej zmianie
 
+
+        //Metoda WorkTheNextShift() obiektu Queen nakazuje każdej robotnicy pracować przez jedną zmianę i dodać wiersz do raportu w zależności do jej statusu.
+        public string WorkTheNextShift()
+        {
+            shiftNumber++;
+            string report = "Raport zmiany numer " + shiftNumber + "\r\n";
+            for (int i = 0; i < workers.Length; i++)
+            {
+                if (workers[i].DidYouFinish())
+                    report += "Robotnica numer " + (i + 1) + " zakończyła swoje zadanie\r\n";
+                if (String.IsNullOrEmpty(workers[i].CurrentJob))
+                    report += "Robotnica numer" + (i + 1) + "nie pracuje\r\n";
+                else
+                    if (workers[i].ShiftsLeft > 0)
+                    report += "Robotnica numer " + (i + 1) + "robi '" + workers[i].CurrentJob
+                        + "' jeszcze przez " + workers[i].ShiftsLeft + " zmiany\r\n";
+                else
+                    report += "Robotnica numer " + (i + 1) + " zakończy '" + workers[i].CurrentJob + "' po tej zmianie\r\n";
+
+            }
+            return report;
+        }
         #endregion
 
 
