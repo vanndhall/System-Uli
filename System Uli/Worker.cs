@@ -16,7 +16,7 @@ namespace System_Uli
         #endregion
 
         #region PROPERTIES
-        public int ShiftsLeft
+        public int ShiftsLeft //pozostałe zmiany
         { 
             get
                 { return shiftsToWork - shiftsWorked; }
@@ -64,7 +64,7 @@ namespace System_Uli
         //Metoda do nakazania im rozpoczecie kolejnej zmian;
         //Zwraca ona true tylko wtedy, gdy jest to naprawdę ostatnia zmiana z przeznaczonych na wykonanie zleconej pracy.
         //Dzięki temu królowa może dodać do rapotu linijkę i poinformować, że pszczoła po tej zmianie zakończy swoją pracę.
-        public bool DidYuFinish()
+        public bool DidYouFinish()
         {
             if (String.IsNullOrEmpty(currentJob))  //Guard
                 return false;                       //

@@ -126,6 +126,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "System zarządzania ulem";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.shifts)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
