@@ -12,7 +12,8 @@ namespace System_Uli
 
         public Queen(Worker[] workers)
         {
-            this.workers = workers; 
+            this.workers = workers;
+            
         }
 
         #endregion

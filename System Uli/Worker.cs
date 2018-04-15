@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace System_Uli
 {
-    class Worker
+    class Worker : Bee //dziedziczenie po Bee
     {
         #region BUILDER
-        public Worker(string[] jobsICanDo)
+        public Worker(string[] jobsICanDo, double weightMg): base(weightMg) //dla klasy Bee
         {
             this.jobsICanDo = jobsICanDo;
         }
         #endregion
 
+
+
         #region PROPERTIES
+        
+        
         public int ShiftsLeft //pozostałe zmiany
         { 
             get
@@ -26,12 +30,13 @@ namespace System_Uli
             get
                 { return currentJob; }
         }
-        
+
 
 
         #endregion
 
         #region VARIABLES
+        const double honeyUnitsPerShiftsWorked = .65; // dla klasy dziedziczonej Bee
         private string[] jobsICanDo;
         private int shiftsToWork;
         private int shiftsWorked;
@@ -39,6 +44,14 @@ namespace System_Uli
         #endregion
 
         #region METHODS
+
+        public override double HoneyConsumptionRate()
+        {
+            double consumption = base.HoneyConsumptionRate();
+            consumption += shiftsWorked * honeyUnitsPerShiftsWorked;
+            return consumption;
+        }
+
         //Metoda do przypisywania nowych zadań przez Queen, sprawdza ich pole jobsICanDo aby okreslic,
         //czy dana pszczoła potrafi wykonywać ten rodzaj pracy
         public bool DoThisJob(string job, int numberOfShifts)
