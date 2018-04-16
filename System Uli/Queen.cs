@@ -6,11 +6,11 @@ using System.Text;
 
 namespace System_Uli
 {
-    class Queen
+    class Queen : Bee
     {
         #region BUILDER
 
-        public Queen(Worker[] workers)
+        public Queen(Worker[] workers,double weightMg): base(weightMg)
         {
             this.workers = workers;
             
@@ -42,6 +42,7 @@ namespace System_Uli
         //Metoda WorkTheNextShift() obiektu Queen nakazuje każdej robotnicy pracować przez jedną zmianę i dodać wiersz do raportu w zależności do jej statusu.
         public string WorkTheNextShift()
         {
+            double honeyConsumed = HoneyConsumptionRate();
             shiftNumber++;
             string report = "Raport zmiany numer " + shiftNumber + "\r\n";
             for (int i = 0; i < workers.Length; i++)
@@ -58,6 +59,7 @@ namespace System_Uli
                     report += "Robotnica numer " + (i + 1) + " zakończy '" + workers[i].CurrentJob + "' po tej zmianie\r\n";
 
             }
+            report += "Całkowite spożycie miodu: " + honeyConsumed + " jednostek\r\n";
             return report;
         }
         #endregion
